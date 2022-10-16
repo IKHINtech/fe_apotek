@@ -1,3 +1,7 @@
+import 'package:apotek/models/product_model.dart';
+import 'package:apotek/models/supplier_model.dart';
+import 'package:apotek/models/unit_model.dart';
+
 class ProductVariant {
   String? Id;
   String? ProductName;
@@ -29,6 +33,40 @@ class ProductVariant {
         SupplierName: json['supplier_name'],
         Name: json['name'],
         IsActive: json['is_active'],
+        CreatedAt: json['created_at'],
+        UpdatedAt: json['updated_at'],
+      );
+}
+
+class ProductVariantDetail {
+  String? Id;
+  String? Name;
+  Product? product;
+  Supplier? supplier;
+  Unit? unit;
+  DateTime? CreatedAt;
+  DateTime? UpdatedAt;
+
+  ProductVariantDetail({
+    this.Id,
+    this.Name,
+    this.product,
+    this.supplier,
+    this.unit,
+    this.CreatedAt,
+    this.UpdatedAt,
+  });
+
+  factory ProductVariantDetail.fromJson(Map<String, dynamic> json) =>
+      ProductVariantDetail(
+        Id: json['id'],
+        Name: json['name'],
+        product:
+            json['product'] == null ? null : Product.fromJson(json['procuct']),
+        supplier: json['supplier'] == null
+            ? null
+            : Supplier.fromJson(json['supplier']),
+        unit: json['unit'] == null ? null : Unit.fromJson(json['unit']),
         CreatedAt: json['created_at'],
         UpdatedAt: json['updated_at'],
       );
